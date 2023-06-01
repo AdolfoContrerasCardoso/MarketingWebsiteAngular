@@ -1,0 +1,27 @@
+<div >
+  <select class="custom-select" [(ngModel)]="buscarLugar" >
+      <option value="">Seleccionar lugar</option>
+      <option *ngFor="let zonas of afi.zonas | filtroCuatro" value="{{ zonas.lugar }}">{{ zonas.lugar }}</option>
+  </select>
+  <br> <br>
+  <select class="custom-select" [(ngModel)]="buscarCategoria">
+    <option value="">Categorías</option>
+    <option *ngFor="let cat of afi.categorias | filtroTres" value="{{ cat.categorias }}">{{ cat.categorias }}</option>
+  </select>
+  <br><br>
+  <section class="ae-container-fluid ae-container-fluid--inner rk-portfolio animated fadeInDown">
+
+      <div class="ae-masonry ae-masonry-md-2 ae-masonry-xl-4">
+          <div *ngFor="let af of afi.afiliados | filtro: buscarLugar | filtroCategoria: buscarCategoria | filtroDos ">
+          <a [routerLink]="['/negocio',af.cod]" class="rk-item ae-masonry__item"><img class="card-img-top" src="../../../assets/productos/{{ af.url }}.jpg" width="80" height="80">
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">{{ af.categoria }}</h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary">{{ af.lugar }}</h6>
+              </div>
+            </div>
+          </a>
+          </div>
+      </div>
+  </section>
+</div>
